@@ -1,0 +1,35 @@
+{% extends 'operator.' ~ template ~ '.index' %}
+
+{% block title %}
+    {{ Lang.get('AlwaysBcc::lang.always_bcc') }}
+{% endblock %}
+
+{% block content %}
+
+    {{ form_model(fields, { 'method': 'POST', 'route': [ 'plugin.alwaysbcc.settings.update' ], 'class': 'validate' }) }}
+
+        <div class="form-container first">
+
+            <div class="form-row">
+                {{ form_label('email', Lang.get('AlwaysBcc::lang.setting')) }}
+                <div class="input-container">
+                    {{ form_input('text', 'email') }}<br />
+                    <span class="description">{{ Lang.get('AlwaysBcc::lang.setting_desc') }}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-button">
+            {{ form_submit(Lang.get('general.save')) }}
+        </div>
+
+    {{ form_close() }}
+
+{% endblock %}
+
+{% block scripts_footer %}
+    {% if jsValidator|default is not empty %}
+        {{ jsValidator|raw }}
+    {% endif %}
+{% endblock %}
